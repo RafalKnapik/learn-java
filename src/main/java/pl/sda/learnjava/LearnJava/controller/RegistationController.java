@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,13 @@ public class RegistationController {
     public String postRegistrations(@ModelAttribute @Valid StudentDTO studentDTO, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
+            for (Object object : bindingResult.getAllErrors()) {
+                if (object instanceof FieldError) {
+                    FieldError fieldError = (FieldError) object;
+                    model.addAttribute("errorMessage", fieldError.getDefaultMessage());
+                }
+            }
+
             return "registration";
         } else {
             studentService.addStudent(studentDTO);

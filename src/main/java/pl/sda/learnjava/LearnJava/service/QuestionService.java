@@ -20,14 +20,14 @@ public class QuestionService {
     private Set<Question> basicQuestionsAnswered = new HashSet<>();
     private Set<Question> mediumQuestionsAnswered = new HashSet<>();
     private Set<Question> advancedQuestionsAnswered = new HashSet<>();
+
     public Set<Question> getAnsweredQuestionsByLevel(int level) {
-        if(level == 1)
+        if (level == 1)
             return this.basicQuestionsAnswered;
-        if(level == 2)
+        if (level == 2)
             return this.mediumQuestionsAnswered;
         return this.advancedQuestionsAnswered;
     }
-
 
 
     public QuestionService() {
@@ -96,6 +96,7 @@ public class QuestionService {
         getAnsweredQuestionsByLevel(level).addAll(randomQuestions);
         return randomQuestions;
     }
+
     public List<Question> getQuestionsToCorrectQuiz(QuizAnswerDTO quizAnswerDTO) {
         List<Question> questions = new ArrayList<>();
 
@@ -136,11 +137,9 @@ public class QuestionService {
     }
 
 
-
-
-     public void clearAnsweredQuestions() {
+    public void clearAnsweredQuestions() {
         basicQuestionsAnswered.clear();
         mediumQuestionsAnswered.clear();
         advancedQuestionsAnswered.clear();
-     }
+    }
 }

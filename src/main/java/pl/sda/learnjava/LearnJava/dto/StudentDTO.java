@@ -16,6 +16,7 @@ public class StudentDTO {
 
     @NotBlank(message = "Imię nie może być puste")
     private String name;
+
     private String lastName;
     private int level = 0;
     private String login;
